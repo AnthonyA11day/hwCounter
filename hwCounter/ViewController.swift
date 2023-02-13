@@ -9,10 +9,11 @@ import UIKit
 
 final class ViewController: UIViewController {
     
-    var counterLabel = UILabel()
-    var counterButton = UIButton()
-    var counterValue = 0
-    
+    private var counterLabel = UILabel()
+    private var counterButton = UIButton()
+    private var counterValue = 0
+    private var holdTimer = Timer()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
@@ -25,6 +26,7 @@ final class ViewController: UIViewController {
         createLabel()
         createButton()
         addResetButton()
+        holdTimer.invalidate()
     }
     
 //MARK: label
@@ -57,18 +59,19 @@ final class ViewController: UIViewController {
     @objc func touchButton() {
         counterValue += 1
         counterLabel.text = String(counterValue)
-//        holdTimer.invalidate()
+        holdTimer.invalidate()
 //        print("touch Button")
     }
     
     @objc func holdButton() {
-        counterValue +=  1
-        counterLabel.text = String(counterValue)
-//        createTimer()
-        print("hold Button")
+//        counterValue +=  1
+//        counterLabel.text = String(counterValue)
+        createTimer()
+//        print("hold Button")
     }
 }
 
+//MARK: bar button - Reset
 extension ViewController {
     func addResetButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset",
@@ -79,6 +82,26 @@ extension ViewController {
 
     @objc func actionReset() {
         print("action Reset")
+        counterValue = 0
         counterLabel.text = "0"
+        holdTimer.invalidate()
+
+    }
+}
+
+//MARK: timer
+extension ViewController {
+    func createTimer() {
+        holdTimer = Timer.scheduledTimer(timeInterval: 0.2,
+                                         target: self,
+                                         selector: #selector(counter),
+                                         userInfo: nil,
+                                         repeats: true)
+    }
+    
+    @objc func counter() {
+        counterValue +=  1
+        counterLabel.text = String(counterValue)
+//        print("tik tak")
     }
 }
