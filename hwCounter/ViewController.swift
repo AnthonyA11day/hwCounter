@@ -11,6 +11,7 @@ final class ViewController: UIViewController {
     
     var counterLabel = UILabel()
     var counterButton = UIButton()
+    var counterValue = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,7 @@ final class ViewController: UIViewController {
         
         createLabel()
         createButton()
+        addResetButton()
     }
     
 //MARK: label
@@ -43,7 +45,6 @@ final class ViewController: UIViewController {
         counterButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 16 * 2))
         counterButton.center.x = view.center.x
         counterButton.center.y = view.center.y + 100
-//        counterButton.backgroundColor = .orange
         counterButton.setTitle("Tap or Hold", for: .normal)
         counterButton.setTitleColor(.systemBlue, for: .normal)
         counterButton.addTarget(self, action: #selector(holdButton), for: .touchDown )
@@ -54,21 +55,30 @@ final class ViewController: UIViewController {
     
 //MARK - methods
     @objc func touchButton() {
-//        counterValue += 1
-//        counterLabel.text = String(counterValue)
+        counterValue += 1
+        counterLabel.text = String(counterValue)
 //        holdTimer.invalidate()
 //        print("touch Button")
     }
     
     @objc func holdButton() {
-//        counterValue +=  1
-//        counterLabel.text = String(counterValue)
+        counterValue +=  1
+        counterLabel.text = String(counterValue)
 //        createTimer()
         print("hold Button")
     }
-
-    
-    
-    
 }
 
+extension ViewController {
+    func addResetButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset",
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(actionReset))
+    }
+
+    @objc func actionReset() {
+        print("action Reset")
+        counterLabel.text = "0"
+    }
+}
