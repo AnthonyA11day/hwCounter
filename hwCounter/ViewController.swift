@@ -49,25 +49,25 @@ final class ViewController: UIViewController {
         counterButton.center.y = view.center.y + 100
         counterButton.setTitle("Tap or Hold", for: .normal)
         counterButton.setTitleColor(.systemBlue, for: .normal)
+        counterButton.setTitleColor(.black, for: .highlighted)
+
         counterButton.addTarget(self, action: #selector(holdButton), for: .touchDown )
         counterButton.addTarget(self, action: #selector(touchButton), for: .touchUpInside )
 
         view.addSubview(counterButton)
     }
     
-//MARK - methods
+//MARK: bitton methods
     @objc func touchButton() {
         counterValue += 1
         counterLabel.text = String(counterValue)
         holdTimer.invalidate()
-//        print("touch Button")
     }
     
     @objc func holdButton() {
 //        counterValue +=  1
 //        counterLabel.text = String(counterValue)
         createTimer()
-//        print("hold Button")
     }
 }
 
@@ -81,11 +81,9 @@ extension ViewController {
     }
 
     @objc func actionReset() {
-        print("action Reset")
         counterValue = 0
         counterLabel.text = "0"
         holdTimer.invalidate()
-
     }
 }
 
@@ -102,6 +100,5 @@ extension ViewController {
     @objc func counter() {
         counterValue +=  1
         counterLabel.text = String(counterValue)
-//        print("tik tak")
     }
 }
