@@ -20,24 +20,20 @@ final class ViewController: UIViewController {
     }
     
     private func setupSubviews() {
-        view.backgroundColor = .systemGray4
         title = "Counter"
-        
+        view.backgroundColor = .systemGray4
         createLabel()
         createButton()
         addResetButton()
-        holdTimer.invalidate()
     }
     
 //MARK: label
     private func createLabel() {
-        
         counterLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 300))
         counterLabel.center = view.center
         counterLabel.text = "0"
         counterLabel.textAlignment = .center
         counterLabel.font = UIFont.systemFont(ofSize: 16 * 7)
-
         view.addSubview(counterLabel)
     }
     
@@ -50,10 +46,8 @@ final class ViewController: UIViewController {
         counterButton.setTitle("Tap or Hold", for: .normal)
         counterButton.setTitleColor(.systemBlue, for: .normal)
         counterButton.setTitleColor(.black, for: .highlighted)
-
         counterButton.addTarget(self, action: #selector(holdButton), for: .touchDown )
         counterButton.addTarget(self, action: #selector(touchButton), for: .touchUpInside )
-
         view.addSubview(counterButton)
     }
     
@@ -65,8 +59,6 @@ final class ViewController: UIViewController {
     }
     
     @objc func holdButton() {
-//        counterValue +=  1
-//        counterLabel.text = String(counterValue)
         createTimer()
     }
 }
