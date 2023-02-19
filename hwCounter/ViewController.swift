@@ -20,7 +20,7 @@ final class ViewController: UIViewController {
     }
     
     private func setupSubviews() {
-        title = "Counter"
+        title = "Counter".localized()
         view.backgroundColor = .systemGray4
         createLabel()
         createButton()
@@ -43,7 +43,8 @@ final class ViewController: UIViewController {
         counterButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 16 * 2))
         counterButton.center.x = view.center.x
         counterButton.center.y = view.center.y + 100
-        counterButton.setTitle("Tap or Hold", for: .normal)
+        let settitle = "Tap or Hold".localized()
+        counterButton.setTitle(settitle, for: .normal)
         counterButton.setTitleColor(.systemBlue, for: .normal)
         counterButton.setTitleColor(.black, for: .highlighted)
         counterButton.addTarget(self, action: #selector(holdButton), for: .touchDown )
@@ -66,7 +67,7 @@ final class ViewController: UIViewController {
 //MARK: bar button - Reset
 extension ViewController {
     func addResetButton() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset",
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset".localized(),
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(actionReset))
