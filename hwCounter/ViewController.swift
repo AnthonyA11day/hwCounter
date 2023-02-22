@@ -83,7 +83,7 @@ extension ViewController {
 //MARK: timer
 extension ViewController {
     func createTimer() {
-        holdTimer = Timer.scheduledTimer(timeInterval: 0.2,
+        holdTimer = Timer.scheduledTimer(timeInterval: 0.25,
                                          target: self,
                                          selector: #selector(counter),
                                          userInfo: nil,
