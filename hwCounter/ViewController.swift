@@ -34,6 +34,7 @@ final class ViewController: UIViewController {
         counterLabel.text = "0"
         counterLabel.textAlignment = .center
         counterLabel.font = UIFont.systemFont(ofSize: 16 * 7)
+        counterLabel.textColor = .red
         view.addSubview(counterLabel)
     }
     
