@@ -72,6 +72,7 @@ extension ViewController {
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(actionReset))
+        navigationItem.rightBarButtonItem?.tintColor = .red
     }
 
     @objc func actionReset() {
